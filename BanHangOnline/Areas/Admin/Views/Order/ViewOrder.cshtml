@@ -1,0 +1,49 @@
+﻿@model IEnumerable<OrderDetails>
+@{
+    ViewData["title"] = "Chi tiet Don hang";
+}
+<h3>Chi tiết Đơn hàng</h3>
+<div class="row-sm-3">
+    <a class="btn btn-success btn-sm" asp-action="Create" asp-controller="Categories">Thêm danh mục</a>
+    <div class="search_box pull-right">
+        <form asp-controller="Order" asp-action="Search" method="get">
+            <input type="text" name="searchString" placeholder="Search" />
+            <button class="btn btn-default" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            @* <th scope="col">ID</th> *@
+            <th scope="col">Mã đơn hàng</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Ngày tạo</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Quản lý</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.OrderCode</th>
+@*                 <td>@item.Username</td>
+                <td>@item.CreatedDate</td>
+
+                <td>
+                    @if (item.Status == 1)
+                    {
+                        <span class="text text-danger">Đơn Hàng mới</span>
+                    }
+                    else
+                    {
+                        <span class="text text-success">Đơn hàng đã thành công</span>
+                    }
+                </td> *@
+
+            </tr>
+        }
+    </tbody>
+</table>

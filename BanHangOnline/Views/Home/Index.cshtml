@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ProductModel>
+<div class="col-sm-3">
+	@Html.Partial("_SlidebarPartial")
+</div>
+<style>
+	.product-image-wrapper{
+		height: 450px;
+	}
+</style>
+
+<div class="col-sm-9 padding-right">
+	<div class="features_items">
+		<h2 class="title text-center">Sản Phẩm</h2>
+		@foreach(var item in Model){
+		<div class="col-sm-4">
+			<div class="product-image-wrapper">
+				<div class="single-products">					
+					<div class="productinfo text-center">
+						<a asp-action="Details" asp-controller="Product" asp-route-Id="@item.Id">
+							<img src="~/media/products/@item.Image" alt="@item.Name" width="100%" />
+							<h2>@item.Price VNĐ</h2>
+							<p>@item.Name</p>
+							<p>Danh mục: @item.Categories.Name</p>
+							<p>Thương Hiệu: @item.Brand.Name</p>
+						<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-Id="@item.Id">Add to cart</a>
+						</a>
+					</div>					
+				</div>
+			</div>
+		</div>
+		}
+	</div>
+
+</div>

@@ -1,0 +1,73 @@
+﻿@using BanHangOnline.Models.ViewModels
+@model CartItemViewModel
+<section id="cart_items">
+	<div class="container">
+		<div class="breadcrumbs">
+			<ol class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Cart</li>
+				<h3>Giỏ hàng</h3>
+			</ol>
+		</div>
+		<div class="table-responsive cart_info">
+			<table class="table table-condensed">
+				<thead>
+					<tr class="cart_menu">
+						<td class="image">Item</td>
+						<td class="description"></td>
+						<td class="price">Price</td>
+						<td class="quantity">Quantity</td>
+						<td class="total">Total</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					@if(Model.CartItems.Count > 0)
+					{
+						@foreach (var item in Model.CartItems)
+						{
+							<tr>
+								<td class="cart_product">
+									<a href=""><img src="~/media/products/@item.Image" alt="" width="150px" height="150px"></a>
+								</td>
+								<td class="cart_description">
+									<h4><a href="">@item.ProductName"</a></h4>
+								</td>
+								<td class="cart_price">
+									<p>@item.Price" VNĐ</p>
+								</td>
+								<td class="cart_quantity">
+									<div class="input-group">
+										<span class="input-group-btn"><a class="btn btn-default btn-sm" asp-controller="Cart" asp-action="Increase" asp-route-id="@item.ProductId"> + </a></span>
+										<input class="cart_quantity_input" type="text" name="quantity" value="@item.Quantity" autocomplete="off" size="2">
+										<span><a class="btn btn-default btn-sm" asp-controller="Cart" asp-action="Decrease" asp-route-id="@item.ProductId"> - </a></span>
+									</div>
+								</td>
+								<td class="cart_total">
+									<p class="cart_total_price">@Model.CartItems.Where(x => x.ProductId == @item.ProductId).Sum(x => x.Quantity * x.Price).ToString()</p>
+								</td>
+								<td>
+									<a class="btn btn-danger btn-sm" asp-controller="Cart" asp-action="Remove" asp-route-id="@item.ProductId"> Xóa </a>
+								</td>
+							</tr>
+						}	
+						<tr rowspan="6">
+							<td colspan="6">Tổng: <p class="cart_total_price">@Model.GrandTotal.ToString()</p></td>
+							<td><a class="btn btn-danger btn-sm" asp-controller="Cart" asp-action="Claer"> Xóa toàn bộ </a></td>
+						</tr>
+							@if (User.Identity?.IsAuthenticated ?? false)
+							{
+								<td><a class="btn btn-primary btn-sm" asp-controller="Checkout" asp-action="Checkout"> Thanh toán </a></td>
+							}		
+					}
+					else
+					{
+						<tr>
+							<td colspan="5"><h4>Giỏ hàng của bạn trống.</h4></td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
