@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BanHangOnline.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240404090553_first")]
-    partial class first
+    [Migration("20240418142657_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

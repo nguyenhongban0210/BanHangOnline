@@ -20,9 +20,9 @@
 							<img src="~/media/products/@item.Image" alt="@item.Name" width="100%" />
 							<h2>@item.Price VNĐ</h2>
 							<p>@item.Name</p>
-							<p>Danh mục: @item.Categories.Name</p>
+							@* <p>Danh mục: @item.Categories.Name</p> *@
 							<p>Thương Hiệu: @item.Brand.Name</p>
-						<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-Id="@item.Id">Add to cart</a>
+						<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-Id="@item.Id">ADD TO CART</a>
 						</a>
 					</div>					
 				</div>
